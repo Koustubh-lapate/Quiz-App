@@ -165,7 +165,33 @@ export class Quiz {
     }
 
     getCurrentState() {
-        
+        if(this.currentState === "not_started") {
+            return {
+                type: "not_started"
+            }
+        }
+
+        if(this.currentState === "ended") {
+            return {
+                type: "ended",
+                leaderboard: this.getLeaderboard()
+            }
+        }
+
+        if(this.currentState === "leaderboard") {
+            return {
+                type: "leaderboard",
+                leaderboard: this.getLeaderboard()
+            }
+        }
+
+        if(this.currentState === "question") {
+            const problem = this.problems[this.activeProblem];
+            return {
+                type: "question",
+                problem
+            }
+        }
     }
 
 }
